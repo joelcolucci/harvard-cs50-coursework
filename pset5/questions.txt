@@ -1,0 +1,48 @@
+0.  BMP - Supports 1-, 4-, 8-, 16-, 24-, and 32-bit color. This equates to anywhere between 2 to 16+ million color
+GIF - Supports 1 - 8 bit for color; 256 max colors
+JPEG - Support 24 bit RGB (16,777,216 colors)
+PNG - Supports 24 bit RGB  (16,777,216 colors) and 32 bit RGBA
+1.  The GIF file format supports animation.
+2.  Lossy compression is a type of encoding that “drops” or “discards” part of the data of a file during compression. The result is a smaller file. The downside is a degradation of quality because reconstruction of the file is not exact due to loss of data. Lossy compression is often used in image formats.
+Lossless compression allows for a files original data to be restored identically after it has been compressed. Lossless compression is warranted for files that need to return to their exact content after being compressed.
+3.  JPEGS are lossy compressed.
+4.  When a file is deleted on a FAT file system the actual bits representing the file are not deleted. Instead the metadata or data that allows the computer to remember where the bits of that file are, are forgotten. Thus the user looses access to opening the file.
+
+“When the operating system erases a FAT file, two things occur. First, the system modifies the file name’s first character in the file’s directory entry to signal that he file character in the file’s directory entry to signal the the file has been deleted and that the directory entry can be recycled. Second, the system moves all of the file’s FAT clusters to the hard drive’s list of free clusters. The actual file data is never touched.”
+Garfinkel, S.l., and A. Shelat. "Remembrance of Data Passed: A Study of Disk Sanitization Practices." IEEE Security & Privacy Magazine 1.1 (2003): 17-27. Print.
+
+5.  You can use a sanitation program that will write over all addressable spots on your hard drive with the ASCII character for null. Some sanitation programs are thought to be more effective than others because they write over your data with specific patterns (Gutman patterns) as opposed to ASCII null characters. 
+
+6.  stdint.h is a header file defining a series of standard sizes (widths in bits) for integer types.
+7.  The purpose of using the aforementioned types in a program, is to improve source code portability. 
+The size (in bits) of data types varies from machine to machine due to processor differences. Through the use of the types in the stdint.h header file, a program can automatically adapt to these differences helping to reduce the potential for bugs in the program when it is run on different machines.
+
+8.  BYTE 8 bits (1 byte)
+DWORD 32 bit (4 bytes) unsigned integer
+LONG 32 bit (4 bytes) signed integer
+WORD 16 bits (2 bytes) unsigned integer
+
+9.  The first two bytes of any BMP file, that identify it as such, are 0x42 0x4D in hexadecimal.
+
+10. “bfSize” is the size of the entire bitmap file including the metadata and the actual image. “biSize” is the
+size in bytes of the DIB (image part of the BMP file).
+
+11. If biHeight is negative, the bitmap DIB is described in the BMP file from the top down starting from the upper-left corner. 
+
+12. The biBitCount field describes the color depth of a BMP in bits-per-pixel as well as the maximum number of colors in the bitmap.
+
+13. The call to fopen in copy.c:37 is used to create a new file that will store the copied contents of the file being copied. If copy.c:37 returns null it means that there was an error in the call to fopen. One reason for fopen to return NULL is that there was not enough memory to create the new file. Other reasons for fopen to return NULL are platform specific and require wrapping the function call in an error catching function to assist in the debugging process.
+
+14. The fread function takes 4 arguments: fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
+The third argument, nmemb, describes the number of items of size size that the programmer wants to read in at a time. In our code this argument is always one because we want to read in one item of size pixel at a time. This way we can manipulate the pixel as we desire.
+
+15. The biWidth field describes the width of the bitmap in pixels. If the bi.biWidth is three, the padding assigned is one. This is because BMP files store the bitmap pixels (bits of data) in multiples of four.
+
+16. In layman’s terms, the fseek function allows a programmer to adjust his/her position within a file. The function accepts three arguments: a pointer to a file, an offset value (in bytes), whence (position from where to offset from). The argument whence should be one of the following three constants: SEEK_SET, SEEK_CUR, SEEK_END. 
+
+17. SEEK_CUR is a constant passed into the fseek function that instructs the file position indicator to point to the current position in the file. A programmer can use fseek with SEEK_CUR to offset their current position in a file and skip ahead n number of bytes (as specified by the second argument of the fseek function).
+
+18. Milo Banana
+
+
+
